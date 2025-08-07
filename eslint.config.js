@@ -1,14 +1,14 @@
-import reactHooksPlugin from 'eslint-plugin-react-hooks';
-import stylisticPlugin from '@stylistic/eslint-plugin';
-import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import { fixupPluginRules } from '@eslint/compat';
+import jsPlugin from '@eslint/js';
+import stylisticPlugin from '@stylistic/eslint-plugin';
 import tsParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
-import reactPlugin from 'eslint-plugin-react';
 import jestPlugin from 'eslint-plugin-jest';
-import tseslint from 'typescript-eslint';
-import jsPlugin from '@eslint/js';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
+import reactPlugin from 'eslint-plugin-react';
+import reactHooksPlugin from 'eslint-plugin-react-hooks';
 import globals from 'globals';
+import tseslint from 'typescript-eslint';
 
 export default [
   {
@@ -102,11 +102,72 @@ export default [
       'default-param-last': 'warn',
       'import/order': ['warn', {
         'groups': [
-          ['external', 'builtin'],
+          ['builtin', 'external'],
           'internal',
-          ['parent', 'sibling'],
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type',
         ],
+        'pathGroups': [
+          {
+            'pattern': '@/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@pages/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@components/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@hooks/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@helpers/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@providers/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@types/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@interfaces/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': '@test/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
+            'pattern': 'src/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+        ],
+        'pathGroupsExcludedImportTypes': ['builtin'],
         'newlines-between': 'always',
+        'alphabetize': {
+          'order': 'asc',
+          'caseInsensitive': true,
+        },
       }],
 
       '@stylistic/operator-linebreak': 'off',
