@@ -1,4 +1,4 @@
-name: Lint & Test
+name: Lint and Test
 
 on:
   pull_request:
@@ -17,24 +17,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
 
       - name: Install pnpm
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Lint
         run: pnpm lint
 
       - name: Run tests with coverage
-        run: pnpm test -- --coverage
+        run: pnpm vitest run --coverage
 
       - name: Check coverage threshold
         run: |
-          COVERAGE=$(pnpm test -- --coverage --coverageProvider=v8 --coverageThreshold='{"global":{"lines":60}}' || echo "FAIL")
-          if [[ "$COVERAGE" == "FAIL" ]]; then
+          COVERAGE=$(jq '.total.lines.pct' coverage/coverage-summary.json)
+          echo "Coverage is $COVERAGE%"
+          if (( $(echo "$COVERAGE < 60" | bc -l) )); then
             echo "❌ Coverage below 60%"
             exit 1
           fi
