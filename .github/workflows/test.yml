@@ -1,0 +1,40 @@
+name: Lint & Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint
+        run: pnpm lint
+
+      - name: Run tests with coverage
+        run: pnpm test -- --coverage
+
+      - name: Check coverage threshold
+        run: |
+          COVERAGE=$(pnpm test -- --coverage --coverageProvider=v8 --coverageThreshold='{"global":{"lines":60}}' || echo "FAIL")
+          if [[ "$COVERAGE" == "FAIL" ]]; then
+            echo "❌ Coverage below 60%"
+            exit 1
+          fi
