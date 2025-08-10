@@ -32,7 +32,13 @@ jobs:
 
       - name: Check coverage threshold
         run: |
-          COVERAGE=$(jq '.total.lines.pct' coverage/coverage-summary.json)
+          # Calculate total coverage from coverage-final.json
+          COVERAGE=$(jq -r '
+            [to_entries[] | .value.s | to_entries[] | .value] | 
+            (map(select(. > 0)) | length) as $covered | 
+            (length) as $total | 
+            if $total > 0 then ($covered / $total * 100) else 0 end
+          ' coverage/coverage-final.json)
           echo "Coverage is $COVERAGE%"
           if (( $(echo "$COVERAGE < 60" | bc -l) )); then
             echo "❌ Coverage below 60%"
