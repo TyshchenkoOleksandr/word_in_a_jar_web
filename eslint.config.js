@@ -42,6 +42,9 @@ export default [
       '**/node_modules',
       'src/serviceWorker.ts',
       'src/reportWebVitals.ts',
+      'eslint.config.js',
+      'vite.config.ts',
+      '*.config.{js,ts}',
     ],
   },
 

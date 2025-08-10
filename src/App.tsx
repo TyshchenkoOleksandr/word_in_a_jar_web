@@ -55,6 +55,7 @@ const App: FC = () => {
         logos
         to
         learn
+
         more
       </p>
     </>

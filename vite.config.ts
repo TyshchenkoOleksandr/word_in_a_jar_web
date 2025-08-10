@@ -27,8 +27,20 @@ export default defineConfig({
     include: ['src/**/*.test.{ts,tsx}'],
     coverage: {
       provider: 'v8',
-      reporter: ['text', 'html'],
-      exclude: ['src/test/*', '**/*.d.ts'],
+      reporter: ['text', 'html', 'json'],
+      exclude: [
+        'src/test/*',
+        '**/*.d.ts',
+        '*.config.{js,ts}',
+        'eslint.config.js',
+        'vite.config.ts',
+        'package.json',
+        'tsconfig*.json',
+        'node_modules/**',
+        'dist/**',
+        'build/**',
+        'coverage/**',
+      ],
     },
   },
 });
