@@ -3,16 +3,24 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
 describe('App component', () => {
-  it('renders initial heading and button', () => {
+  it('renders TestButton with initial theme mode', () => {
     render(<App />);
-    expect(screen.getByText(/Vite\s*\+\s*React/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /count is 0/i })).toBeInTheDocument();
+    // The button should display either 'LIGHT' or 'DARK' theme mode
+    const button = screen.getByRole('button');
+    expect(button).toBeInTheDocument();
+    expect(button.textContent).toMatch(/^(LIGHT|DARK)$/);
   });
 
-  it('increments count on button click', () => {
+  it('toggles theme mode on button click', () => {
     render(<App />);
-    const button = screen.getByRole('button', { name: /count is 0/i });
+    const button = screen.getByRole('button');
+    const initialTheme = button.textContent;
+
     fireEvent.click(button);
-    expect(button).toHaveTextContent('count is 1');
+
+    // The theme should toggle to the opposite value
+    const newTheme = button.textContent;
+    expect(newTheme).not.toBe(initialTheme);
+    expect(newTheme).toMatch(/^(LIGHT|DARK)$/);
   });
 });

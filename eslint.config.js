@@ -160,6 +160,11 @@ export default [
             'position': 'after',
           },
           {
+            'pattern': '@enums/**',
+            'group': 'internal',
+            'position': 'after',
+          },
+          {
             'pattern': 'src/**',
             'group': 'internal',
             'position': 'after',
@@ -167,10 +172,6 @@ export default [
         ],
         'pathGroupsExcludedImportTypes': ['builtin'],
         'newlines-between': 'always',
-        'alphabetize': {
-          'order': 'asc',
-          'caseInsensitive': true,
-        },
       }],
 
       '@stylistic/operator-linebreak': 'off',

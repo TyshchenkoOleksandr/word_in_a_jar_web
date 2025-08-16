@@ -18,6 +18,7 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types'),
       '@assets': path.resolve(__dirname, './src/assets'),
       '@test': path.resolve(__dirname, './src/test'),
+      '@enums': path.resolve(__dirname, './src/enums'),
     },
   },
   test: {
