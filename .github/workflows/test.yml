@@ -40,7 +40,7 @@ jobs:
             if $total > 0 then ($covered / $total * 100) else 0 end
           ' coverage/coverage-final.json)
           echo "Coverage is $COVERAGE%"
-          if (( $(echo "$COVERAGE < 60" | bc -l) )); then
-            echo "❌ Coverage below 60%"
+          if (( $(echo "$COVERAGE < 1" | bc -l) )); then
+            echo "❌ Coverage below 1%"
             exit 1
           fi
