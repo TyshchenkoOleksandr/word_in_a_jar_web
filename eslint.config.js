@@ -239,6 +239,7 @@ export default [
       '@typescript-eslint/no-unused-vars': 'warn',
 
       'jsx-a11y/no-autofocus': 'off',
+      "react/jsx-newline": ["warn", { prevent: false }]
     },
   },
 ];

@@ -10,6 +10,7 @@ const TestButton: FC = () => {
 
   return (
     <Button
+      color="inherit"
       onClick={toggleThemeMode}
     >
       {themeMode}
