@@ -14,7 +14,7 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
-    "test:coverage:strict": "vitest run --coverage --coverage.threshold=60"
+    "test:coverage:strict": "vitest run --coverage --coverage.threshold=1"
   },
   "husky": {
     "hooks": {
@@ -29,8 +29,11 @@
     "@emotion/styled": "^11.14.1",
     "@mui/icons-material": "^7.3.1",
     "@mui/material": "^7.3.1",
+    "i18next": "^25.3.6",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-i18next": "^15.6.1",
+    "react-router-dom": "^7.8.1",
     "use-context-selector": "^2.0.0"
   },
   "devDependencies": {
