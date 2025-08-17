@@ -9,7 +9,6 @@ import ukr from './lang/ukr.json';
 const resources = {
   'en-US': { common: enUS },
   'uk-UA': { common: ukr },
-  // 'uk-UA': ukr,
 };
 
 i18n
