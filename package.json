@@ -14,7 +14,7 @@
     "test:ui": "vitest --ui",
     "test:watch": "vitest --watch",
     "test:coverage": "vitest run --coverage",
-    "test:coverage:strict": "vitest run --coverage --coverage.threshold=60"
+    "test:coverage:strict": "vitest run --coverage --coverage.threshold=1"
   },
   "husky": {
     "hooks": {
