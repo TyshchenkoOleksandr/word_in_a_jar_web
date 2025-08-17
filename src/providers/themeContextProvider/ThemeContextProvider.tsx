@@ -48,6 +48,7 @@ export const ThemeContextProvider: FC<PropsWithChildren> = (props) => {
     <ThemeContextProviderContext.Provider value={value}>
       <ThemeProvider theme={themeMode === EThemeMode.LIGHT ? lightTheme : darkTheme}>
         <CssBaseline />
+
         {children}
       </ThemeProvider>
     </ThemeContextProviderContext.Provider>
